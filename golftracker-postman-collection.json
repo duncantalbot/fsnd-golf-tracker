@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "48df4ea5-a03d-4114-889b-0dd85b843136",
+		"name": "golftracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d38b0c91-7c84-49d3-98fb-22eb6d092459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Tiger\",\n    \"lastname\": \"Woods\",\n    \"handicap\": \"4.2\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c81df8ad-1796-43a4-9d3e-289e989ea63c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eedbe3c0-7e78-4e0b-b137-4cc75341e50d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Tiger\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1c8d0c3-6f50-406c-97ef-cfbf7790cd70",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94f89032-3f0a-4cc4-92dd-4acbe60e938d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_type\": \"chipping\",\n    \"date\": \"01.01.2021\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "efea7dfa-1df9-40e3-bb28-67a4bf4c7611",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{member-token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "529ec239-5c3c-40dc-8a5b-cbc254c79e89",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d40ac888-62eb-434a-957a-a3d35ec8b712",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "guest",
+			"item": [
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d38b0c91-7c84-49d3-98fb-22eb6d092459",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"handicap\": \"4.2\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c81df8ad-1796-43a4-9d3e-289e989ea63c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eedbe3c0-7e78-4e0b-b137-4cc75341e50d",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Tiger\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1c8d0c3-6f50-406c-97ef-cfbf7790cd70",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94f89032-3f0a-4cc4-92dd-4acbe60e938d",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_type\": \"chipping\",\n    \"date\": \"01.01.2021\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "efea7dfa-1df9-40e3-bb28-67a4bf4c7611",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{guest-token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8192d1e7-e1b5-4ec1-a7dc-24abcd8d8cf1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c2e71d9-e7c2-42d4-8d1d-5e09328356d0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8440b604-5f91-4fd0-be5c-15676390888e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ff99f50f-1e24-4f2c-b58e-2e131fba946a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "36591aed-3c89-4930-85f2-68e4b0ead39f",
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		},
+		{
+			"id": "29c5026d-c702-4fd5-84e6-d54717a28b7f",
+			"key": "member-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhEZnpkaTJ6NHY5UHg2aGdmczZZQiJ9.eyJpc3MiOiJodHRwczovL2R1bmNhbnRhbGJvdC5hdS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZjODc4MGI0Y2QzODkwMDZmYTMzYWE2IiwiYXVkIjpbImh0dHBzOi8vZ29sZnRyYWNrZXIiLCJodHRwczovL2R1bmNhbnRhbGJvdC5hdS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjA2OTkzMjAxLCJleHAiOjE2MDcwNzk2MDEsImF6cCI6IjBvemlqTE9NTFdpSUpteE1Td1JZTFp2b3puNTRHRW5rIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpldmVudHMiLCJnZXQ6ZXZlbnRzIiwicG9zdDpldmVudHMiLCJ1cGRhdGU6ZXZlbnRzIl19.Aw0hQf-Fx7VcbzZ0IDzpcagOm8twZ1pbR3rzsh6tTXh9YYHKdW9ioXPmVzGRFOyc_Vdl8MdYPz23RhMuq9YiPjb6Da-xLBkNCR5YU9Ldg_tCsAvHAtHjK_s-51fm7iwzhwCxjQ4YzM-ADQ6_FPrAri6NkKjJ2lMJuKWLDQ6s3V4G1zoKMXmlGveqk-ynUNqgmO_NaFITucc5sv0nSq0VzujsJYFXeH9XQu2LGHWNdZrGNH9sTSDHySR1bBcSWdYRZv39bOyXkqVMLLryPqWBnU3Rj5QlQKgRBXkBHKW4qDszGaKtLSDHjruSbnASL04dCof5Z7W0jTzC8oqSMxXcUw",
+			"type": "string"
+		},
+		{
+			"id": "fecea4f0-aaf4-4f28-9fea-5ceb1b9bcd05",
+			"key": "guest-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhEZnpkaTJ6NHY5UHg2aGdmczZZQiJ9.eyJpc3MiOiJodHRwczovL2R1bmNhbnRhbGJvdC5hdS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZjOGNhNjk5ZmIyNTUwMDY5NDAwNWIxIiwiYXVkIjpbImh0dHBzOi8vZ29sZnRyYWNrZXIiLCJodHRwczovL2R1bmNhbnRhbGJvdC5hdS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjA2OTk0NjA5LCJleHAiOjE2MDcwODEwMDksImF6cCI6IjBvemlqTE9NTFdpSUpteE1Td1JZTFp2b3puNTRHRW5rIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImdldDpldmVudHMiXX0.w7QemDgZ0BsWfs1zOr6ydG4jHGb7Es8v61z8gb7mPbKsEl6QXbT_B45FXBCuFFnHSVnD81i7UIlhQG8ZovpeyFsh23y4B1N4u569lun-vyquDMhkrtQNZXKyLVjZT4wOi9HeV6dQ-lgYjFl4J-QiT0aUilUsEKZVhJf9JEnTMSZqq9VX9hgU_WAD2lrceJ6E59NRfKAIRctDnoCoPUt1chu6sAbh0zJhzbR46G0FuRuxo4yi5e17cgo4F0FGTYC7hO9ALAYuQ4Y9NcLH-B-ag57EcH1mIjoLjNYiNo7cETGQP5pC_qFkSn2Ye7OrZSYI89XmrUTu-7aNZWtjmvsnWA",
+            "type": "string"
+        }
+	],
+    "protocolProfileBehavior": {}
+}

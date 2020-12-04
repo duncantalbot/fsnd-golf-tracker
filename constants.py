@@ -1,0 +1,5 @@
+AUTH0_CLIENT_ID = '0ozijLOMLWiIJmxMSwRYLZvozn54GEnk'
+AUTH0_CLIENT_SECRET = '_0_ZmjVjwL2TEYWT_syIlfcYhFxFFr00O4L0tvzxuuIHVqj4nTGmwiZU8034hKz3'
+AUTH0_CALLBACK_URL = 'https://localhost:5000/login-results'
+AUTH0_DOMAIN = 'duncantalbot.au.auth0.com'
+AUTH0_AUDIENCE = 'https://golftracker'
