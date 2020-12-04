@@ -9,6 +9,7 @@ AUTH0_DOMAIN = 'duncantalbot.au.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'https://golftracker'
 
+
 # AuthError Exception
 class AuthError(Exception):
     def __init__(self, error, status_code):
@@ -114,7 +115,7 @@ def verify_decode_jwt(token):
         except jwt.JWTClaimsError:
             raise AuthError({
                 'code': 'invalid_claims',
-                'description': 'Incorrect claims. Please, check the audience and issuer.'
+                'description': 'Incorrect claims. Check audience and issuer.'
             }, 401)
         except Exception:
             raise AuthError({
@@ -147,12 +148,13 @@ def requires_auth(permission=''):
         return wrapper
     return requires_auth_decorator
 
-def requires_signed_in(f):
-  @wraps(f)
-  def decorated(*args, **kwargs):
-    if 'jwt_token' not in session:
-      # Redirect to Login page here
-      return redirect('/')
-    return f(*args, **kwargs)
 
-  return decorated
+def requires_signed_in(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if 'jwt_token' not in session:
+            # Redirect to Login page here
+            return redirect('/')
+        return f(*args, **kwargs)
+
+    return decorated

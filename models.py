@@ -1,6 +1,7 @@
 from app import db
 import json
 
+
 class Person(db.Model):
     __tablename__ = 'persons'
 
@@ -17,14 +18,14 @@ class Person(db.Model):
     def __repr__(self):
         return '<id {}>'.format(self.id)
 
-    def insert(self): 
+    def insert(self):
         db.session.add(self)
         db.session.commit()
-    
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-    
+
     def update(self):
         db.session.commit()
 
@@ -45,28 +46,26 @@ class Event(db.Model):
     date = db.Column(db.String())
     description = db.Column(db.String())
 
-
-
     def __init__(self, event_type, date, description):
         self.event_type = event_type
         self.date = date
         self.description = description
-    
-    def __repr__(self): 
+
+    def __repr__(self):
         return '<id {}>'.format(self.id)
 
-    def insert(self): 
+    def insert(self):
         db.session.add(self)
         db.session.commit()
-    
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-    
+
     def update(self):
         db.session.commit()
-    
-    def serialize(self): 
+
+    def serialize(self):
         return {
             'id': self.id,
             'event_type': self.event_type,
