@@ -8,19 +8,20 @@ from models import Person, Event
 
 MEMBER_TOKEN = os.environ['MEMBER_TOKEN']
 
+
 class BasicTest(unittest.TestCase):
     def setUp(self):
 
         app.config.from_object('config.TestingConfig')
         app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///golftracker"
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-        
+
         self.client = app.test_client()
         self.headers = {'Content-Type': 'application/json'}
 
         db.drop_all()
         db.create_all()
- 
+
     # executed after each test
     def tearDown(self):
         pass
@@ -40,8 +41,7 @@ class BasicTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
-    
+
     def test_member_add_person(self):
         new_person = {
             "firstname": "Tiger",
@@ -50,7 +50,8 @@ class BasicTest(unittest.TestCase):
         }
         self.headers.update({'Authorization': 'Bearer ' + MEMBER_TOKEN})
 
-        res = self.client.post('/persons', json=new_person, headers=self.headers)
+        res = self.client.post(
+            '/persons', json=new_person, headers=self.headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -60,7 +61,7 @@ class BasicTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
+
     def test_member_get_persons(self):
         self.headers.update({'Authorization': 'Bearer ' + MEMBER_TOKEN})
 
@@ -78,10 +79,10 @@ class BasicTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
+
     def test_member_update_person(self):
         person = Person(firstname='Tiger', lastname='Woods',
-                            handicap='4.2')
+                        handicap='4.2')
         person.insert()
         person_id = person.id
 
@@ -91,7 +92,8 @@ class BasicTest(unittest.TestCase):
 
         self.headers.update({'Authorization': 'Bearer ' + MEMBER_TOKEN})
 
-        res = self.client.patch(f'/persons/{person_id}', json=updated_person, headers=self.headers)
+        res = self.client.patch(
+            f'/persons/{person_id}', json=updated_person, headers=self.headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -102,10 +104,10 @@ class BasicTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
+
     def test_member_delete_person(self):
         person = Person(firstname='Tiger', lastname='Woods',
-                            handicap='4.2')
+                        handicap='4.2')
         person.insert()
         person_id = person.id
 
@@ -120,6 +122,7 @@ class BasicTest(unittest.TestCase):
     '''
     EVENTS
     '''
+
     def test_public_add_event(self):
         new_event = {
             "event_type": "chipping",
@@ -131,8 +134,7 @@ class BasicTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
-    
+
     def test_member_add_event(self):
         new_event = {
             "event_type": "chipping",
@@ -151,7 +153,7 @@ class BasicTest(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
-    
+
     def test_member_get_events(self):
         self.headers.update({'Authorization': 'Bearer ' + MEMBER_TOKEN})
 
