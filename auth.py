@@ -1,3 +1,4 @@
+import os
 from flask import request, _request_ctx_stack, abort, session, redirect
 from functools import wraps
 from jose import jwt
@@ -5,10 +6,9 @@ from urllib.request import urlopen
 import json
 
 
-AUTH0_DOMAIN = 'duncantalbot.au.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://golftracker'
-
+AUTH0_DOMAIN = os.environ['AUTH0_DOMAIN']
+ALGORITHMS = os.environ['AUTH0_ALGORITHMS']
+API_AUDIENCE = os.environ['AUTH0_AUDIENCE']
 
 # AuthError Exception
 class AuthError(Exception):
@@ -115,7 +115,7 @@ def verify_decode_jwt(token):
         except jwt.JWTClaimsError:
             raise AuthError({
                 'code': 'invalid_claims',
-                'description': 'Incorrect claims. Check audience and issuer.'
+                'description': 'Incorrect claims. Please, check the audience and issuer.'
             }, 401)
         except Exception:
             raise AuthError({
@@ -148,13 +148,12 @@ def requires_auth(permission=''):
         return wrapper
     return requires_auth_decorator
 
-
 def requires_signed_in(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        if 'jwt_token' not in session:
-            # Redirect to Login page here
-            return redirect('/')
-        return f(*args, **kwargs)
+  @wraps(f)
+  def decorated(*args, **kwargs):
+    if 'jwt_token' not in session:
+      # Redirect to Login page here
+      return redirect('/')
+    return f(*args, **kwargs)
 
-    return decorated
+  return decorated
